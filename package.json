@@ -1,0 +1,15 @@
+{
+  "name": "brijen_project1",
+  "version": "1.0.0",
+  "description": "brijen_project1",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt validate --verbose", "start" : "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "brijenshah29"
+  },
+  "author": "Brijen Shah",
+  "license": "MIT"
+}
