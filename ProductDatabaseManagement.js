@@ -7,7 +7,7 @@ var product = {
 }
 
 function add_product() {
-    seneca.act({role: 'product',cmd:'add', data: product}, function(err,msg){
+    seneca.act({role: 'product', cmd: 'add', data: product}, function (err, msg) {
         console.log(msg);
     });
 }
