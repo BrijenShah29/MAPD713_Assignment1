@@ -66,3 +66,32 @@ seneca.add('role:api, cmd:delete-product', function (args, done) {
 seneca.add('role:api, cmd:delete-all-products', function (args, done) {
     done(null, { cmd: "delete-all-products" });
 });
+
+seneca.act('role:web', {
+    use: {
+        prefix: '/jsdatabase',
+        pin: { role: 'api', cmd: '*' },
+        map: {
+            'add-product': { GET: true },
+            'products': { GET: true },
+            'get-product': { GET: true, },
+            'delete-product': { GET: true, }
+        }
+    }
+})
+
+var express = require('express');
+var app = express();
+app.use(require("body-parser").json())
+app.use(seneca.export('web'));
+
+
+
+app.listen(3009)
+console.log("Js Server listening on localhost:3009 ...");
+console.log("****___Get / Post / Delete Requests___**** ");
+console.log("http://localhost:3009/jsdatabase/add-product?product=Laptop&price=200.40&category=PC");
+console.log("http://localhost:3009/jsdatabase/products");
+console.log("http://localhost:3009/jsdatabase/get-product?product_id=1111");
+console.log("http://localhost:3009/jsdatabase/delete-product?product_id=1111");
+console.log("http://localhost:3009/jsdatabase/delete-all-products");
