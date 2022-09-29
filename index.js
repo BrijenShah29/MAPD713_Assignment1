@@ -38,3 +38,31 @@ seneca.add('role:api, cmd:add-product', function (args, done) {
         done(err, msg);
     });
 });
+seneca.add('role:api, cmd:get-all-products', function (args, done) {
+    console.log("--> cmd:get-all-products");
+    seneca.act({ role: 'product', cmd: 'get-all' }, function (err, msg) {
+        console.log(msg);
+        done(err, msg);
+    });
+});
+
+seneca.add('role:api, cmd:get-product', function (args, done) {
+    console.log("--> cmd:get-product, args.product_id: " + args.product_id);
+    seneca.act({ role: 'product', cmd: 'get', data: { product_id: args.product_id } }, function (err, msg) {
+        console.log(msg);
+        done(err, msg);
+    });
+});
+
+
+seneca.add('role:api, cmd:delete-product', function (args, done) {
+    console.log("--> cmd:delete-product, args.product_id: " + args.product_id);
+    seneca.act({ role: 'product', cmd: 'delete', data: { product_id: args.product_id } }, function (err, msg) {
+        console.log(msg);
+        done(err, msg);
+    });
+});
+
+seneca.add('role:api, cmd:delete-all-products', function (args, done) {
+    done(null, { cmd: "delete-all-products" });
+});
